@@ -1,8 +1,8 @@
-import SuperJSON from 'superjson';
+import SuperJSON from "superjson";
 
-import { initTRPC } from '@trpc/server';
+import { initTRPC } from "@trpc/server";
 
-import { Context, InnerContext } from './context.js';
+import { Context, InnerContext } from "./context.js";
 
 const t = initTRPC.context<Context>().create({
   transformer: SuperJSON,

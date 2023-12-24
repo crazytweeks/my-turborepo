@@ -1,10 +1,10 @@
-import cors from 'cors';
-import express, { Application } from 'express';
+import cors from "cors";
+import express, { Application } from "express";
 
-import * as trpcExpress from '@trpc/server/adapters/express';
+import * as trpcExpress from "@trpc/server/adapters/express";
 
-import { createContext } from './context';
-import { publicProcedure, router } from './trpc';
+import { createContext } from "./context";
+import { publicProcedure, router } from "./trpc";
 
 const appRouter = router({
   helloWorld: publicProcedure.query(async () => {
@@ -13,7 +13,7 @@ const appRouter = router({
 
   time: publicProcedure.subscription(async () => {
     return new Date().toISOString();
-  })
+  }),
 });
 
 export type AppRouter = typeof appRouter;

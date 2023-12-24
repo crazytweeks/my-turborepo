@@ -1,4 +1,4 @@
-import { createTRPCReact } from '@trpc/react-query';
+import { createTRPCReact } from "@trpc/react-query";
 
 import type { AppRouter } from "@repo/api/types";
 
@@ -9,4 +9,4 @@ type TRPCClient = ReturnType<typeof createTRPCReact<AppRouter>>;
 const trpc: TRPCClient = createTRPCReact<AppRouter>();
 
 export default trpc;
-export { trpc }
+export { trpc };

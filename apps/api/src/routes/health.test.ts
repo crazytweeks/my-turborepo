@@ -1,6 +1,6 @@
-import t from 'tap';
+import t from "tap";
 
-import { createTestCaller } from '../utils/testCaller.js';
+import { createTestCaller } from "../utils/testCaller.js";
 
 t.test("Health route", (t) => {
   t.test("Success", async (t) => {

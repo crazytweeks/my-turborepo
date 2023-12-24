@@ -1,13 +1,15 @@
 "use client";
 
-import React from 'react';
+import React from "react";
 
-import Hello from './Hello';
+import Hello from "./Hello";
 
 const HomePage = () => {
   return (
-    <div><Hello /></div>
-  )
-}
+    <div>
+      <Hello />
+    </div>
+  );
+};
 
-export default HomePage
+export default HomePage;
