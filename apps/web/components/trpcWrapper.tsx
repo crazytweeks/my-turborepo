@@ -1,10 +1,10 @@
 "use client";
-import { FC, PropsWithChildren, useState } from "react";
-import SuperJSON from "superjson";
 
+import { FC, PropsWithChildren, useState } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { createWSClient, httpBatchLink, splitLink, wsLink } from "@trpc/client";
+import SuperJSON from "superjson";
 
 import trpc from "../lib/trpc";
 
@@ -52,7 +52,10 @@ const TrpcWrapper: FC<
                 const headers = new Map(await headersPromise);
                 headers.set("x-trpc-source", "nextjs-react");
 
-                return { authorization: jwt, ...Object.fromEntries(headers) };
+                return {
+                  authorization: jwt,
+                  ...Object.fromEntries(headers),
+                };
               } catch (error) {
                 console.error("Error creating auth header", error);
                 return {};

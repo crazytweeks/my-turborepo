@@ -1,9 +1,0 @@
-{
-  "extends": "@repo/typescript-config/base.json",
-  "exclude": ["dist", "build", "node_modules"],
-  "compileOnSave": true,
-  "compilerOptions": {
-    "outDir": "dist",
-    "baseUrl": "./src"
-  }
-}

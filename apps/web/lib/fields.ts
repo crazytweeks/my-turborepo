@@ -1,6 +1,6 @@
-import { z } from 'zod';
+import { z } from "zod";
 
-import languages from './data/languages';
+import languages from "./data/languages";
 
 // import timezones from "../../utils/data/timezones.json";
 
@@ -51,7 +51,7 @@ const websiteUrlRegex = new RegExp(
     "(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*" + // port and path
     "(\\?[;&a-z\\d%_.~+=-]*)?" + // query string
     "(\\#[-a-z\\d_]*)?$",
-  "i"
+  "i",
 );
 
 const addressSchema = z.object({

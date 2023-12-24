@@ -5,16 +5,19 @@
   "main": "dist/index.js",
   "src": "index.ts",
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "format": "prettier --write ."
   },
   "keywords": [],
-  "author": "maybemaby",
+  "author": "bhuvan",
   "license": "ISC",
   "devDependencies": {
     "typescript": "^5.3.3",
-    "@repo/typescript-config": "workspace:*"
+    "@repo/typescript-config": "workspace:*",
+    "@repo/prettier-config": "workspace:*"
   },
   "dependencies": {
     "zod": "^3.22.4"
-  }
+  },
+  "prettier": "@repo/prettier-config"
 }

@@ -1,13 +1,13 @@
-import dotenv from 'dotenv';
-import path from 'node:path';
-import z from 'zod';
+import path from "node:path";
+import dotenv from "dotenv";
+import z from "zod";
 
-import genOpensslRand from './genOpenssl.js';
+import genOpensslRand from "./genOpenssl";
 
 const envFile = path.join(path.resolve(), ".env");
-console.log('envFile: ', envFile);
 
 const env = dotenv.config({ path: envFile });
+console.log("env: ", env);
 
 const auth0ConfigSchema = z.object({
   AUTH0_SECRET: z.string().default(genOpensslRand(24)),
@@ -59,20 +59,8 @@ const serverSchema = z.object({
 const mergedSchema = redisConfigSchema
   .merge(serverSchema)
   .merge(mongoDbConfigSchema)
-  .merge(auth0ConfigSchema)
-  .catch((err) => {
-    const errMsg = err.error.errors.map(
-      (e) => `${e.path.join(".")} ${e.message}`
-    );
-
-    console.error(
-      "\x1b[33m%s\x1b[0m", // yellow
-      "Error: Invalid config. Please check your .env file or environment variables for the following errors:",
-      errMsg
-    );
-    process.exit(1);
-  });
+  .merge(auth0ConfigSchema);
 
 const config = mergedSchema.parse(env.parsed);
 
-export { config };
+export default config;

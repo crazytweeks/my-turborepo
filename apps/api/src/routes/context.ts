@@ -1,8 +1,7 @@
-import { inferAsyncReturnType, TRPCError } from "@trpc/server";
-import { CreateFastifyContextOptions } from "@trpc/server/adapters/fastify";
-
 // Reference required for compilation
 import type fastify from "fastify";
+import { inferAsyncReturnType, TRPCError } from "@trpc/server";
+import { CreateFastifyContextOptions } from "@trpc/server/adapters/fastify";
 
 // eslint-disable-next-line @typescript-eslint/require-await
 export async function createContextInner() {

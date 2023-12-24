@@ -1,12 +1,13 @@
 import { NextApiRequest, NextApiResponse } from "next";
-
 import {
+  AfterRefresh,
   getAccessToken,
   getSession,
   withApiAuthRequired,
 } from "@auth0/nextjs-auth0";
+import { config } from "@repo/shared";
 
-const afterRefresh = (_req, _res, session) => {
+const afterRefresh: AfterRefresh = (_req, _res, session) => {
   delete session.idToken;
   return session;
 };
@@ -25,7 +26,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       return res.status(200).json(data);
     }
 
-    const info = await fetch(`${process.env.AUTH0_ISSUER_BASE_URL}/userinfo`, {
+    const info = await fetch(`${config.AUTH0_ISSUER_BASE_URL}/userinfo`, {
       headers: {
         Authorization: `Bearer ${session?.accessToken}`,
       },
@@ -36,10 +37,10 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       afterRefresh,
       authorizationParams: {
         response_type: "code",
-        audience: process.env.AUTH0_AUDIENCE,
+        audience: config.AUTH0_AUDIENCE,
 
-        client_id: process.env.AUTH0_CLIENT_ID,
-        client_secret: process.env.AUTH0_CLIENT_SECRET,
+        client_id: config.AUTH0_CLIENT_ID,
+        client_secret: config.AUTH0_CLIENT_SECRET,
 
         client_assertion_type:
           "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",

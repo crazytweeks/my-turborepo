@@ -1,11 +1,11 @@
-import { Inter } from 'next/font/google';
-import { headers } from 'next/headers';
-import { cache } from 'react';
-
-import TrpcWrapper from '../components/trpcWrapper';
-import UserWrapper from '../components/userWrapper';
-
 import type { Metadata } from "next";
+import { cache } from "react";
+import { Inter } from "next/font/google";
+import { headers } from "next/headers";
+
+import TrpcWrapper from "../components/trpcWrapper";
+import UserWrapper from "../components/userWrapper";
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -32,7 +32,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <UserWrapper>
-        <TrpcWrapper headersPromise={getHeaders()}>{children}</TrpcWrapper>
+          <TrpcWrapper headersPromise={getHeaders()}>{children}</TrpcWrapper>
         </UserWrapper>
       </body>
     </html>

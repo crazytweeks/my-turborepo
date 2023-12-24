@@ -1,7 +1,6 @@
+import * as trpcExpress from "@trpc/server/adapters/express";
 import cors from "cors";
 import express, { Application } from "express";
-
-import * as trpcExpress from "@trpc/server/adapters/express";
 
 import { createContext } from "./context";
 import { publicProcedure, router } from "./trpc";
