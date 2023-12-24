@@ -19,8 +19,8 @@
       "cache": true
     },
     "start": {
-      "dependsOn": ["^start"],
-      "cache": true
+      "cache": true,
+      "persistent": true
     }
   }
 }
