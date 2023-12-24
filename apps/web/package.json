@@ -9,8 +9,10 @@
     "lint": "eslint . --max-warnings 0"
   },
   "dependencies": {
+    "@auth0/nextjs-auth0": "^3.5.0",
     "@repo/api": "workspace:*",
     "@repo/server": "workspace:1.0.0",
+    "@repo/shared": "workspace:*",
     "@tanstack/react-query": "4.36.1",
     "@tanstack/react-query-devtools": "^5.14.6",
     "@trpc/client": "^10.44.1",
@@ -24,6 +26,7 @@
   "devDependencies": {
     "@next/eslint-plugin-next": "^14.0.4",
     "@repo/eslint-config": "workspace:0.0.1",
+    "@repo/prettier-config": "workspace:^0.1.0",
     "@repo/typescript-config": "workspace:0.0.1",
     "@types/eslint": "^8.56.0",
     "@types/node": "^20.10.5",
@@ -31,5 +34,6 @@
     "@types/react-dom": "^18.2.18",
     "eslint": "^8.56.0",
     "typescript": "^5.3.3"
-  }
+  },
+  "prettier": "@repo/prettier-config"
 }

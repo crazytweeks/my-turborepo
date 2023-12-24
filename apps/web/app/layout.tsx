@@ -1,8 +1,9 @@
-import { Inter } from "next/font/google";
-import { headers } from "next/headers";
-import { cache } from "react";
+import { Inter } from 'next/font/google';
+import { headers } from 'next/headers';
+import { cache } from 'react';
 
-import TrpcWrapper from "../components/trpcWrapper";
+import TrpcWrapper from '../components/trpcWrapper';
+import UserWrapper from '../components/userWrapper';
 
 import type { Metadata } from "next";
 const inter = Inter({ subsets: ["latin"] });
@@ -30,12 +31,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <nav>
-          <div>
-            <a href="/">Home</a>
-          </div>
-        </nav>
+        <UserWrapper>
         <TrpcWrapper headersPromise={getHeaders()}>{children}</TrpcWrapper>
+        </UserWrapper>
       </body>
     </html>
   );
