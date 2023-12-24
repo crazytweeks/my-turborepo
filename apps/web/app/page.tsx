@@ -1,11 +1,12 @@
-'use client';
-import styles from './page.module.css';
+"use client";
 import { useState } from 'react';
+
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { trpc } from '../lib/trpc';
 import { httpBatchLink } from '@trpc/client';
+
 import Hello from '../components/Hello';
-import { Button } from '@ui/components/button';
+import trpc from '../lib/trpc';
+import styles from './page.module.css';
 
 export default function Page(): JSX.Element {
   const [queryClient] = useState(() => new QueryClient());
@@ -13,10 +14,10 @@ export default function Page(): JSX.Element {
     trpc.createClient({
       links: [
         httpBatchLink({
-          url: 'http://localhost:3003/trpc',
+          url: "http://localhost:3003/trpc",
         }),
       ],
-    })
+    }),
   );
 
   return (
@@ -24,7 +25,7 @@ export default function Page(): JSX.Element {
       <QueryClientProvider client={queryClient}>
         <main className={styles.main}>
           <Hello />
-          <Button>Workssss</Button>
+          <button>Workssss</button>
         </main>
       </QueryClientProvider>
     </trpc.Provider>

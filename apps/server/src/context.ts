@@ -1,11 +1,11 @@
-import { inferAsyncReturnType, initTRPC, TRPCError } from '@trpc/server';
-import * as trpcExpress from '@trpc/server/adapters/express';
+import { inferAsyncReturnType, initTRPC, TRPCError } from "@trpc/server";
+import * as trpcExpress from "@trpc/server/adapters/express";
 
 export const createContext = ({
   req,
   res,
 }: trpcExpress.CreateExpressContextOptions) => {
-  console.log(' Validate token');
+  console.log(" Validate token");
   const token = req.headers.authorization;
 
   // if (!token) {

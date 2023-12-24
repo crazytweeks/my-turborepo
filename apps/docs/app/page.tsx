@@ -1,8 +1,6 @@
-import Image from "next/image";
-import { Card } from "@repo/ui/card";
-import { Code } from "@repo/ui/code";
-import styles from "./page.module.css";
-import { Button } from "@repo/ui/button";
+import Image from 'next/image';
+
+import styles from './page.module.css';
 
 function Gradient({
   conic,
@@ -51,6 +49,32 @@ const LINKS = [
   },
 ];
 
+const Code = ({ children, className }: { children: string; className?: string }): JSX.Element => (
+  <code className={[styles.code, className].filter(Boolean).join(" ")}>{children}</code>
+);
+
+const Button = ({ children, className }: { children: string; className?: string }): JSX.Element => (
+  <button className={[styles.button, className].filter(Boolean).join(" ")}>{children}</button>
+);
+
+const Card = ({
+  children,
+  className,
+  href,
+  title,
+}: {
+  children: React.ReactNode;
+  className?: string;
+  href: string;
+  title: string;
+}): JSX.Element => (
+  <a className={[styles.card, className].filter(Boolean).join(" ")} href={href}>
+    <h3>{title} &rarr;</h3>
+    <p>{children}</p>
+  </a>
+);
+
+
 export default function Page(): JSX.Element {
   return (
     <main className={styles.main}>
@@ -78,7 +102,7 @@ export default function Page(): JSX.Element {
         </div>
       </div>
 
-      <Button appName="web" className={styles.button}>
+      <Button className={styles.button}>
         Click me!
       </Button>
 

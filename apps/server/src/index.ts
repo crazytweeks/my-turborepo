@@ -1,12 +1,14 @@
-import express, { Application } from 'express';
-import { publicProcedure, router } from './trpc';
-import * as trpcExpress from '@trpc/server/adapters/express';
-import { createContext } from './context';
 import cors from 'cors';
+import express, { Application } from 'express';
+
+import * as trpcExpress from '@trpc/server/adapters/express';
+
+import { createContext } from './context';
+import { publicProcedure, router } from './trpc';
 
 const appRouter = router({
   helloWorld: publicProcedure.query(async () => {
-    return 'Ola mundo';
+    return "Hello World!";
   }),
 });
 
@@ -16,11 +18,11 @@ const app: Application = express();
 app.use(cors());
 
 app.use(
-  '/trpc',
+  "/trpc",
   trpcExpress.createExpressMiddleware({
     router: appRouter,
     createContext: createContext,
-  })
+  }),
 );
 
 const PORT: number = Number(process.env.PORT) || 3003;
