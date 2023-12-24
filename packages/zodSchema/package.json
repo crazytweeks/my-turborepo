@@ -1,0 +1,20 @@
+{
+  "name": "@repo/zodschema",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "src": "index.ts",
+  "scripts": {
+    "build": "tsc"
+  },
+  "keywords": [],
+  "author": "maybemaby",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^5.3.3",
+    "@repo/typescript-config": "workspace:*"
+  },
+  "dependencies": {
+    "zod": "^3.22.4"
+  }
+}

@@ -1,8 +1,9 @@
 
 import { Inter } from 'next/font/google';
 
-import type { Metadata } from "next";
+import TrpcWrapper from '../components/trpcWrapper';
 
+import type { Metadata } from "next";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -17,7 +18,20 @@ export default function RootLayout({
 }): JSX.Element {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+
+        <nav>
+
+          <div>
+            <a href="/">Home</a>
+            
+          </div>
+
+        </nav>
+      <TrpcWrapper>
+        {children}
+      </TrpcWrapper>
+        </body>
     </html>
   );
 }

@@ -10,6 +10,10 @@ const appRouter = router({
   helloWorld: publicProcedure.query(async () => {
     return "Hello World!";
   }),
+
+  time: publicProcedure.subscription(async () => {
+    return new Date().toISOString();
+  })
 });
 
 export type AppRouter = typeof appRouter;
