@@ -5,8 +5,7 @@ import z from "zod";
 import genOpensslRand from "./genOpenssl";
 
 const envFile = path.join(path.resolve(), ".env");
-
-const env = dotenv.config({ path: envFile });
+dotenv.config({ path: envFile });
 
 const auth0ConfigSchema = z.object({
   AUTH0_SECRET: z.string().default(genOpensslRand(24)),
@@ -57,11 +56,19 @@ const serverSchema = z.object({
   TOKEN_SECRET: z.string().default("e"),
 });
 
-const mergedSchema = redisConfigSchema
-  .merge(serverSchema)
-  .merge(mongoDbConfigSchema)
-  .merge(auth0ConfigSchema);
+const env = process.env;
+console.log("env: ", env);
 
-const config = mergedSchema.parse(env.parsed);
+const redisConf = redisConfigSchema.parse(env);
+const serverConf = serverSchema.parse(env);
+const mongoDbConf = mongoDbConfigSchema.parse(env);
+const auth0Conf = auth0ConfigSchema.parse(env);
+
+const config = {
+  ...redisConf,
+  ...serverConf,
+  ...mongoDbConf,
+  ...auth0Conf,
+};
 
 export default config;

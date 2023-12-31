@@ -23,5 +23,6 @@
       "persistent": true
     }
   },
-  "globalDotEnv": ["./.env"]
+  "globalDotEnv": ["./.env"],
+  "globalEnv": ["BACKEND_URL"]
 }
