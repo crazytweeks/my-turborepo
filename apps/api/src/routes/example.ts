@@ -1,7 +1,8 @@
-import { observable } from "@trpc/server/observable";
-import { z } from "zod";
+import { z } from 'zod';
 
-import { publicProcedure, router } from "./trpc.js";
+import { observable } from '@trpc/server/observable';
+
+import { publicProcedure, router } from './trpc.js';
 
 const testSchema = z.object({
   id: z.string(),
@@ -20,9 +21,10 @@ export const exampleRouter = router({
   randomNumber: publicProcedure.subscription(({ ctx }) => {
     return observable<{ randomNumber: number; auth: string }>((emit) => {
       const timer = setInterval(() => {
-        emit.next({ randomNumber: num, auth: ctx.auth });
         num++;
-      }, 1);
+        console.log("num: ", num);
+        emit.next({ randomNumber: num, auth: ctx.auth });
+      }, 1000);
 
       return () => {
         clearInterval(timer);

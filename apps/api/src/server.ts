@@ -2,16 +2,14 @@ import cors from "@fastify/cors";
 import helmet from "@fastify/helmet";
 import ws from "@fastify/websocket";
 import { fastifyTRPCPlugin } from "@trpc/server/adapters/fastify";
-import dotenv from "dotenv";
 
 import { build } from "./app.js";
-import { config } from "./config/config.js";
 import { env } from "./config/env.js";
 import { createContext } from "./routes/context.js";
 import { appRouter } from "./routes/index.js";
 
 const app = build({
-  logger: config[env.NODE_ENV]?.logger,
+  logger: false, // config[env.NODE_ENV]?.logger,
 });
 
 app.register(ws);

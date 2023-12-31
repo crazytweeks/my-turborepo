@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
-import { cache } from "react";
-import { Inter } from "next/font/google";
-import { headers } from "next/headers";
 
-import TrpcWrapper from "../components/trpcWrapper";
-import UserWrapper from "../components/userWrapper";
+import "../components/global.css";
+
+import { Suspense } from "react";
+import { Inter } from "next/font/google";
+
+import AuthedTrpcWrapper from "../components/wrapper/authedTrpcWrapper";
+import UserWrapper from "../components/wrapper/userWrapper";
+import WpLayout from "../components/wrapper/wpWrapper";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,9 +23,6 @@ export const metadata: Metadata = {
   },
 };
 
-// Lazy load headers
-const getHeaders = cache(() => Promise.resolve(headers()));
-
 export default function RootLayout({
   children,
 }: {
@@ -31,9 +31,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <UserWrapper>
-          <TrpcWrapper headersPromise={getHeaders()}>{children}</TrpcWrapper>
-        </UserWrapper>
+        <Suspense fallback={<div>aaaaa...</div>}>
+          <UserWrapper>
+            <WpLayout>
+              <AuthedTrpcWrapper>{children}</AuthedTrpcWrapper>
+            </WpLayout>
+          </UserWrapper>
+        </Suspense>
       </body>
     </html>
   );

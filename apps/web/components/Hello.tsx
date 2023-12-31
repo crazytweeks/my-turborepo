@@ -11,7 +11,14 @@ const Hello: FC = () => {
 
   if (isError) {
     return (
-      <div>
+      <div
+        style={{
+          backgroundColor: "red",
+          color: "white",
+          padding: 10,
+          borderRadius: 10,
+        }}
+      >
         <h4>
           <div>Error: {error.message}</div>
           <button

@@ -1,13 +1,12 @@
-import path from "node:path";
-import dotenv from "dotenv";
-import z from "zod";
+import dotenv from 'dotenv';
+import path from 'node:path';
+import z from 'zod';
 
-import genOpensslRand from "./genOpenssl";
+import genOpensslRand from './genOpenssl';
 
 const envFile = path.join(path.resolve(), ".env");
 
 const env = dotenv.config({ path: envFile });
-console.log("env: ", env);
 
 const auth0ConfigSchema = z.object({
   AUTH0_SECRET: z.string().default(genOpensslRand(24)),
@@ -54,6 +53,8 @@ const serverSchema = z.object({
     .default("true"),
   BACKEND_URL: z.string().default("http://localhost:8080"),
   AUTH_URL: z.string().default("http://localhost:8000"),
+
+  TOKEN_SECRET: z.string().default("e")
 });
 
 const mergedSchema = redisConfigSchema

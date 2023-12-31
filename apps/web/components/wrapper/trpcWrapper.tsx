@@ -6,33 +6,27 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { createWSClient, httpBatchLink, splitLink, wsLink } from "@trpc/client";
 import SuperJSON from "superjson";
 
-import trpc from "../lib/trpc";
+import trpc from "../../lib/trpc";
+
+const BACKEND_URL = process.env.BACKEND_URL ?? null;
 
 const port = 5000;
 const prefix = "/trpc";
-const urlEnd = `localhost:${port}${prefix}`;
-
-const token: string | null = "12345";
-
-const getToken = async () => {
-  return new Promise<string>((resolve, reject) => {
-    if (!token) {
-      return reject("No token");
-    }
-
-    setTimeout(() => {
-      resolve(token);
-    }, 100);
-  });
-};
+const urlEnd = BACKEND_URL ?? `localhost:${port}${prefix}`;
 
 const TrpcWrapper: FC<
-  PropsWithChildren<{ headersPromise: Promise<Headers> }>
-> = ({ children, headersPromise }) => {
+  PropsWithChildren<{ headersPromise: Promise<Headers>; accessToken: string }>
+> = ({ children, headersPromise, accessToken }) => {
   const [queryClient] = useState(() => new QueryClient());
   const [wsClient] = useState(() =>
     createWSClient({
-      url: `ws://${urlEnd}?AUTH_TOKEN=${token}`,
+      url: `${
+        urlEnd.startsWith("http")
+          ? urlEnd.replace("http", "ws")
+          : urlEnd.startsWith("https")
+            ? urlEnd.replace("https", "wss")
+            : `ws://${urlEnd}`
+      }${urlEnd}?AUTH_TOKEN=${accessToken}`,
     }),
   );
   const [trpcClient] = useState(() =>
@@ -44,16 +38,20 @@ const TrpcWrapper: FC<
           },
           true: wsLink({ client: wsClient }),
           false: httpBatchLink({
-            url: `http://${urlEnd}`,
+            url: `${
+              urlEnd.startsWith("http")
+                ? urlEnd
+                : urlEnd.startsWith("https")
+                  ? urlEnd
+                  : `http://${urlEnd}`
+            }`,
             async headers() {
               try {
-                const jwt = await getToken();
-
                 const headers = new Map(await headersPromise);
                 headers.set("x-trpc-source", "nextjs-react");
 
                 return {
-                  authorization: jwt,
+                  authorization: accessToken,
                   ...Object.fromEntries(headers),
                 };
               } catch (error) {
