@@ -1,7 +1,7 @@
-import { exampleRouter } from './example.js';
-import { healthRouter } from './health.js';
-import { serverRouter } from './server.js';
-import { _testRouter, router } from './trpc.js';
+import { exampleRouter } from "./example.js";
+import { healthRouter } from "./health.js";
+import { serverRouter } from "./server.js";
+import { _testRouter, router } from "./trpc.js";
 
 export const appRouter = router({
   health: healthRouter,

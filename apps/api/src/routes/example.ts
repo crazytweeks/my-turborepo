@@ -1,8 +1,7 @@
-import { z } from 'zod';
+import { observable } from "@trpc/server/observable";
+import { z } from "zod";
 
-import { observable } from '@trpc/server/observable';
-
-import { publicProcedure, router } from './trpc.js';
+import { publicProcedure, router } from "./trpc.js";
 
 const testSchema = z.object({
   id: z.string(),
