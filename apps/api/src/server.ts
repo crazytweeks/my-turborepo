@@ -8,7 +8,7 @@ import { env } from "./config/env.js";
 import { createContext } from "./routes/context.js";
 import { appRouter } from "./routes/index.js";
 
-const app = build({
+const app = await build({
   logger: false, // config[env.NODE_ENV]?.logger,
 });
 

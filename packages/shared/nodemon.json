@@ -1,6 +1,6 @@
 {
   "verbose": false,
-  "watch": ["src/**/*.ts", ".env"],
+  "watch": ["src/**/*.ts", ".env", "src/*.ts"],
   "ignore": [".git", "node_modules", "dist"],
   "exec": "tsc",
   "ext": "ts"

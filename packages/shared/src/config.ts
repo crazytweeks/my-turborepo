@@ -1,11 +1,10 @@
-import path from "node:path";
-import dotenv from "dotenv";
-import z from "zod";
+// import path from 'path';
+import z from 'zod';
 
-import genOpensslRand from "./genOpenssl";
+import genOpensslRand from './genOpenssl.js';
 
-const envFile = path.join(path.resolve(), ".env");
-dotenv.config({ path: envFile });
+// const envFile = path.join(path.resolve(), ".env");
+// dotenv.config({ path: envFile });
 
 const auth0ConfigSchema = z.object({
   AUTH0_SECRET: z.string().default(genOpensslRand(24)),
@@ -57,7 +56,6 @@ const serverSchema = z.object({
 });
 
 const env = process.env;
-console.log("env: ", env);
 
 const redisConf = redisConfigSchema.parse(env);
 const serverConf = serverSchema.parse(env);
@@ -72,3 +70,4 @@ const config = {
 };
 
 export default config;
+export { config };

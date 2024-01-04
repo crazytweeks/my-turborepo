@@ -1,6 +1,6 @@
-import bcrypt from "bcrypt";
+import bcrypt from 'bcrypt';
 
-import config from "./config";
+import config from './config';
 
 const { TOKEN_SECRET } = config;
 const saltRounds = 2;

@@ -1,4 +1,4 @@
-import config from "./config";
+import config from './config';
 
 const auth0config = {
   secret: config.AUTH0_SECRET,

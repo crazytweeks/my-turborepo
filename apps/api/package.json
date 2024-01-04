@@ -5,7 +5,8 @@
   "main": "./dist/src/server.js",
   "exports": {
     "./types": "./src/types.ts",
-    "./routes": "./src/routes/index.ts"
+    "./routes": "./src/routes/index.ts",
+    "./models": "./src/lib/mongoose/models/index.ts"
   },
   "type": "module",
   "scripts": {
@@ -23,12 +24,15 @@
     "@fastify/sensible": "^5.5.0",
     "@fastify/websocket": "^8.3.0",
     "@repo/shared": "workspace:^",
+    "@repo/conf": "workspace:^",
     "@trpc/server": "^10.44.1",
     "dotenv": "^16.3.1",
     "dotenv-cli": "^7.3.0",
     "esm": "^3.2.25",
     "fastify": "^4.25.1",
     "fastify-plugin": "^4.5.1",
+    "ioredis": "^5.3.2",
+    "mongoose": "^8.0.3",
     "superjson": "^2.2.1",
     "typescript": "^5.3.3",
     "zod": "^3.22.4"

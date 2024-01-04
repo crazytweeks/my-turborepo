@@ -2,7 +2,7 @@
   "name": "my-turborepo",
   "private": true,
   "scripts": {
-    "build": "pnpm format && turbo build",
+    "build": "turbo build",
     "dev": "turbo dev",
     "start": "turbo start",
     "lint": "turbo lint",

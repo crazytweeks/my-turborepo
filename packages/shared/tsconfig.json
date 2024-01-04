@@ -1,12 +1,26 @@
 {
   "extends": "@repo/typescript-config/base.json",
+  "include": ["src/**/*.ts"],
+  "exclude": ["./node_modules", "dist"],
   "compilerOptions": {
+    "sourceRoot": "./src",
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "target": "ESNext",
+    "lib": ["es5", "es6", "es2020", "DOM"],
+    "module": "ESNext", // (A)
+    "moduleResolution": "Node", // (B)
+    "strict": true,
+    "sourceMap": true,
+    "rootDirs": ["./src"],
+    "forceConsistentCasingInFileNames": true,
+    "esModuleInterop": true,
+
+    // Needed for CommonJS modules
+    "allowSyntheticDefaultImports": true, // (C)
+    "removeComments": true,
+    //
     "declaration": true,
-    "declarationMap": true,
-    "outDir": "dist",
-    "rootDir": ".",
-    "baseUrl": "."
-  },
-  "include": ["src", "index.ts"],
-  "exclude": ["node_modules", "dist"]
+    "declarationDir": "./dist"
+  }
 }
