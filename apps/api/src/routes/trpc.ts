@@ -1,7 +1,7 @@
 import { initTRPC } from "@trpc/server";
 import SuperJSON from "superjson";
 
-import { Context, InnerContext } from "./context.js";
+import { Context } from "./context.js";
 
 const t = initTRPC.context<Context>().create({
   transformer: SuperJSON,
@@ -10,13 +10,5 @@ const t = initTRPC.context<Context>().create({
   },
 });
 
-const testT = initTRPC.context<InnerContext>().create({
-  transformer: SuperJSON,
-  errorFormatter({ shape }) {
-    return shape;
-  },
-});
-
-export const _testRouter = testT.router;
 export const router = t.router;
 export const publicProcedure = t.procedure;

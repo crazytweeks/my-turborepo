@@ -3,7 +3,7 @@ import { createTheme } from "@mui/material/styles";
 import themeCreator from "./schemas/base";
 
 const muiTheme = createTheme({
-  ...themeCreator("GreyGoose"),
+  ...themeCreator("NebulaFighter"),
 });
 
 export default muiTheme;

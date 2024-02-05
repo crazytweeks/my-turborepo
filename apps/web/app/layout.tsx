@@ -5,6 +5,7 @@ import "../components/global.css";
 import { Suspense } from "react";
 import { Inter } from "next/font/google";
 
+import FullPageLoader from "../components/components/FullpageLoader";
 import AuthedTrpcWrapper from "../components/wrapper/authedTrpcWrapper";
 import UserWrapper from "../components/wrapper/userWrapper";
 import WpLayout from "../components/wrapper/wpWrapper";
@@ -31,7 +32,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Suspense fallback={<div>aaaaa...</div>}>
+        <Suspense fallback={<FullPageLoader />}>
           <UserWrapper>
             <WpLayout>
               <AuthedTrpcWrapper>{children}</AuthedTrpcWrapper>

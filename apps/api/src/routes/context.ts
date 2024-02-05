@@ -3,11 +3,6 @@ import type fastify from "fastify";
 import { inferAsyncReturnType } from "@trpc/server";
 import { CreateFastifyContextOptions } from "@trpc/server/adapters/fastify";
 
-// eslint-disable-next-line @typescript-eslint/require-await
-export async function createContextInner() {
-  return {};
-}
-
 const getParamValueFromUrl = (url: string, param: string) =>
   new Promise<string>((resolve, reject) => {
     const urlParams = new URLSearchParams(url);
@@ -42,4 +37,3 @@ export async function createContext({ req, res }: CreateFastifyContextOptions) {
 }
 
 export type Context = inferAsyncReturnType<typeof createContext>;
-export type InnerContext = inferAsyncReturnType<typeof createContextInner>;

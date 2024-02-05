@@ -1,6 +1,7 @@
 "use client";
 
 import { FC, PropsWithChildren, useState } from "react";
+import Box from "@mui/material/Box";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { createWSClient, httpBatchLink, splitLink, wsLink } from "@trpc/client";
@@ -17,16 +18,12 @@ const urlEnd = BACKEND_URL ?? `localhost:${port}${prefix}`;
 const TrpcWrapper: FC<
   PropsWithChildren<{ headersPromise: Promise<Headers>; accessToken: string }>
 > = ({ children, headersPromise, accessToken }) => {
+  const [url] = useState(`${urlEnd}?AUTH_TOKEN=${accessToken}`);
+
   const [queryClient] = useState(() => new QueryClient());
   const [wsClient] = useState(() =>
     createWSClient({
-      url: `${
-        urlEnd.startsWith("http")
-          ? urlEnd.replace("http", "ws")
-          : urlEnd.startsWith("https")
-            ? urlEnd.replace("https", "wss")
-            : `ws://${urlEnd}`
-      }${urlEnd}?AUTH_TOKEN=${accessToken}`,
+      url: `ws://${url}`,
     }),
   );
   const [trpcClient] = useState(() =>
@@ -67,12 +64,15 @@ const TrpcWrapper: FC<
   );
 
   return (
-    <trpc.Provider client={trpcClient} queryClient={queryClient}>
-      <QueryClientProvider client={queryClient}>
-        <ReactQueryDevtools />
-        {children}
-      </QueryClientProvider>
-    </trpc.Provider>
+    <>
+      <trpc.Provider client={trpcClient} queryClient={queryClient}>
+        <QueryClientProvider client={queryClient}>
+          <ReactQueryDevtools />
+
+          {children}
+        </QueryClientProvider>
+      </trpc.Provider>
+    </>
   );
 };
 

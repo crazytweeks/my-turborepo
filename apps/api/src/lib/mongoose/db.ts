@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
 
-import { config } from "../../config/config.js";
+import env from "../../config/env.js";
 
-const mongoUrl = `${config.MONGODB_HOST}:${config.MONGODB_PORT}/${config.MONGODB_DB}`;
+const mongoUrl = `${env.MONGODB_HOST}:${env.MONGODB_PORT}/${env.MONGODB_DB}`;
 const mongooseConnectionOptions: mongoose.ConnectOptions = {};
 
 const mongoConnection = mongoose.connection;

@@ -20,7 +20,7 @@
     "@repo/api": "workspace:*",
     "@repo/server": "workspace:*",
     "@repo/shared": "workspace:*",
-    "@tanstack/react-query": "4.36.1",
+    "@tanstack/react-query": "^4.18.0",
     "@tanstack/react-query-devtools": "^5.15.5",
     "@trpc/client": "^10.45.0",
     "@trpc/react-query": "^10.45.0",

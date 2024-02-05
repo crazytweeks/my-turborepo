@@ -1,6 +1,6 @@
 import React, { cache, FC, PropsWithChildren } from "react";
 import { headers } from "next/headers";
-import { getAccessToken, getSession } from "@auth0/nextjs-auth0";
+import { getSession } from "@auth0/nextjs-auth0";
 
 import TrpcWrapper from "./trpcWrapper";
 
@@ -15,7 +15,7 @@ const AuthedTrpcWrapper: FC<PropsWithChildren> = async ({ children }) => {
   const accessToken = session?.accessToken;
 
   return (
-    <div>
+    <>
       {accessToken ? (
         <TrpcWrapper headersPromise={getHeaders()} accessToken={accessToken}>
           {children}
@@ -23,7 +23,7 @@ const AuthedTrpcWrapper: FC<PropsWithChildren> = async ({ children }) => {
       ) : (
         <div>Not logged in</div>
       )}
-    </div>
+    </>
   );
 };
 

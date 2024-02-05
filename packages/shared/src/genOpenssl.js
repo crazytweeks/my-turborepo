@@ -1,0 +1,8 @@
+import { execSync } from "child_process";
+//cmd to generate key: openssl rand -base64 172 | tr -d '\n'
+const genOpensslRand = (length, method = "base64") => {
+    const cmd = `openssl rand -${method} ${length} | tr -d '\\n'`;
+    const key = execSync(cmd).toString();
+    return key;
+};
+export default genOpensslRand;

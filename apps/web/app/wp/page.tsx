@@ -1,8 +1,14 @@
 import React from "react";
 import { Box } from "@mui/material";
 
+import SettingFields from "./settings/SettingFields";
+
 const Page = () => {
-  return <Box>This is a page.</Box>;
+  return (
+    <Box>
+      <SettingFields />
+    </Box>
+  );
 };
 
 export default Page;
